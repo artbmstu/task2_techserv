@@ -1,10 +1,17 @@
 package ru.artemiev.task2;
 
-import java.util.ArrayList;
+class Triple<K,T,V> {
+    public K i;
+    public T s1;
+    public V s2;
 
-public class Triple<K,T,V> {
-    ArrayList n1, n2, n3;
-    Triple(Integer i, String s1, String s2){
-
+    Triple(K i, T s1, V s2){
+        this.i = i;
+        this.s1 = s1;
+        this.s2 = s2;
+    }
+    @Override
+    public String toString() {
+        return "(" + i + "," + s1 + "," + s2 +")";
     }
 }
