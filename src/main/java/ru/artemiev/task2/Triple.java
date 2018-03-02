@@ -1,9 +1,13 @@
 package ru.artemiev.task2;
 
 class Triple<K,T,V> {
-    public K i;
-    public T s1;
-    public V s2;
+    private K i;
+    private T s1;
+    private V s2;
+
+    K getI() {
+        return i;
+    }
 
     Triple(K i, T s1, V s2){
         this.i = i;
