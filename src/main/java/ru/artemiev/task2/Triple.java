@@ -5,10 +5,6 @@ class Triple<K,T,V> {
     private T s1;
     private V s2;
 
-    K getI() {
-        return i;
-    }
-
     Triple(K i, T s1, V s2){
         this.i = i;
         this.s1 = s1;
