@@ -91,7 +91,7 @@ public class DataStorage {
                         leftPair = iteratorA.next();
                     } else rightPair = iteratorB.next();
                 }
-                while (rightPair.getKey() == leftPair.getKey()) {
+                while (Objects.equals(rightPair.getKey(), leftPair.getKey())) {
                     localResultLL.add(new Triple<>(leftPair.getKey(), leftPair.getValue(), rightPair.getValue()));
                     if (iteratorB.hasNext()) {
                         rightPair = iteratorB.next();
