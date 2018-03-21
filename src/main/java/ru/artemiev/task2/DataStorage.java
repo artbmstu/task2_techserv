@@ -82,33 +82,25 @@ public class DataStorage {
             ListIterator<Pair<Integer, String>> iteratorB = dataB.listIterator();
             Pair<Integer, String> leftPair, rightPair;
 
-            label:
-            while (iteratorA.hasNext()) {
+            while (iteratorA.hasNext() && iteratorB.hasNext()) {
                 int count = 1;
                 leftPair = iteratorA.next();
                 rightPair = iteratorB.next();
                 while (!leftPair.getKey().equals(rightPair.getKey()) && iteratorA.hasNext() && iteratorB.hasNext()) {
                     if (leftPair.getKey() < rightPair.getKey()) {
                         leftPair = iteratorA.next();
-                    } else if (rightPair.getKey() < leftPair.getKey()) {
-                        rightPair = iteratorA.next();
-                    } else break label;
+                    } else rightPair = iteratorB.next();
                 }
-
-                while (true) {
-                    if (rightPair.getKey().equals(leftPair.getKey())) {
-                        count++;
-                        localResultLL.add(new Triple<>(leftPair.getKey(), leftPair.getValue(), rightPair.getValue()));
-                        if (iteratorB.hasNext()) rightPair = iteratorB.next();
-                        else break;
-                    } else {
-                        for (int i = 0; i < count; i++) {
-                            iteratorB.previous();
-                        }
-                        break;
-                    }
+                while (rightPair.getKey() == leftPair.getKey()) {
+                    localResultLL.add(new Triple<>(leftPair.getKey(), leftPair.getValue(), rightPair.getValue()));
+                    if (iteratorB.hasNext()) {
+                        rightPair = iteratorB.next();
+                    } else break;
+                    count++;
                 }
-
+                for (int i = 0; i < count; i++) {
+                    iteratorB.previous();
+                }
             }
         } catch (NullPointerException e) {
             System.out.println("Ошибка при работе с LinkedList");
